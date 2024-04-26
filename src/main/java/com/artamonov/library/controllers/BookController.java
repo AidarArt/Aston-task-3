@@ -4,6 +4,7 @@ import com.artamonov.library.dto.BookDto;
 import com.artamonov.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +24,11 @@ public class BookController {
     @GetMapping()
     public List<BookDto> findAll() {
         return service.getBooks();
+    }
+
+    @PostMapping
+    public String addBook() {
+
+        return "Book added successfully!";
     }
 }

@@ -1,6 +1,6 @@
 package com.artamonov.library.dto;
 
-public class BookDto {
+public class PublishingHouseDto {
 
     private String name;
 
