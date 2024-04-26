@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -28,5 +27,10 @@ public class BookService {
             dtoList.add(BookMapper.INSTANCE.sourceToDto(entity));
         }
         return dtoList;
+    }
+
+    public void addBook(BookDto dto) {
+        BookEntity entity = BookMapper.INSTANCE.destinationToEntity(dto);
+        repository.save(entity);
     }
 }
