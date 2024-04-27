@@ -35,6 +35,11 @@ public class PublishingHouseService {
         return PublishingHouseMapper.INSTANCE.sourceToDto(entity);
     }
 
+    public PublishingHouseDto getById(Long id) {
+        PublishingHouseEntity entity = repository.findById(id).orElse(new PublishingHouseEntity());
+        return PublishingHouseMapper.INSTANCE.sourceToDto(entity);
+    }
+
     public void addPublishingHouse(PublishingHouseDto dto) {
         PublishingHouseEntity entity = PublishingHouseMapper.INSTANCE.destinationToEntity(dto);
         repository.save(entity);

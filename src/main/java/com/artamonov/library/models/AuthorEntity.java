@@ -1,7 +1,7 @@
 package com.artamonov.library.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +16,7 @@ public class AuthorEntity {
     private String surname;
 
     @ManyToMany
-    private Set<BookEntity> books;
+    private Set<BookEntity> books = new HashSet<>();
 
     public Long getId() {
         return id;

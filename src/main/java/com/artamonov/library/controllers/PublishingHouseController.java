@@ -25,9 +25,9 @@ public class PublishingHouseController {
         return service.getPublishingHouses();
     }
 
-    @GetMapping("/{name}")
-    public PublishingHouseDto getByName(@PathVariable String name) {
-        return service.getByName(name);
+    @GetMapping("/{id}")
+    public PublishingHouseDto getById(@PathVariable Long id) {
+        return service.getById(id);
     }
 
     @PostMapping

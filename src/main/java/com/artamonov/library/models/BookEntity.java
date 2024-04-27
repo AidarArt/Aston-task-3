@@ -23,7 +23,6 @@ public class BookEntity {
     @JoinColumn(name = "publishing_house_id", nullable = false)
     private PublishingHouseEntity publishingHouse;
 
-
     public Long getId() {
         return id;
     }
