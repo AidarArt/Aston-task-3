@@ -2,6 +2,7 @@ package com.artamonov.library.controllers;
 
 import com.artamonov.library.dto.AuthorDto;
 import com.artamonov.library.models.AuthorEntity;
+import com.artamonov.library.models.BookEntity;
 import com.artamonov.library.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/authors")

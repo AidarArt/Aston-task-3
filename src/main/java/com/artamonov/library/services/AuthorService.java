@@ -3,13 +3,10 @@ package com.artamonov.library.services;
 import com.artamonov.library.dto.AuthorDto;
 import com.artamonov.library.dto.mappers.AuthorMapper;
 import com.artamonov.library.models.AuthorEntity;
-import com.artamonov.library.models.BookEntity;
 import com.artamonov.library.repositories.AuthorRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 

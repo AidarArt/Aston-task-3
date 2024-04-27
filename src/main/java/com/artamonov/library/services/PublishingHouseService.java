@@ -1,8 +1,12 @@
 package com.artamonov.library.services;
 
+import com.artamonov.library.dto.BookDto;
 import com.artamonov.library.dto.PublishingHouseDto;
+import com.artamonov.library.dto.mappers.BookMapper;
 import com.artamonov.library.dto.mappers.PublishingHouseMapper;
+import com.artamonov.library.models.BookEntity;
 import com.artamonov.library.models.PublishingHouseEntity;
+import com.artamonov.library.repositories.BookRepository;
 import com.artamonov.library.repositories.PublishingHouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +19,23 @@ import java.util.Optional;
 public class PublishingHouseService {
 
     private final PublishingHouseRepository repository;
+    private final BookRepository bookRepository;
 
     @Autowired
-    public PublishingHouseService(PublishingHouseRepository repository) {
+    public PublishingHouseService(PublishingHouseRepository repository, BookRepository bookRepository) {
         this.repository = repository;
+        this.bookRepository = bookRepository;
     }
+
+    public List<BookDto> getBooksByPublishingHouse(Long id) {
+        List<BookEntity> entities = bookRepository.findBooksByPublishingHouseId(id);
+        List<BookDto> dtoList = new ArrayList<>();
+        for (BookEntity entity : entities) {
+            dtoList.add(BookMapper.INSTANCE.sourceToDto(entity));
+        }
+        return dtoList;
+    }
+
 
     public List<PublishingHouseDto> getPublishingHouses() {
         List<PublishingHouseEntity> entities = repository.findAll();

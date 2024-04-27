@@ -1,5 +1,6 @@
 package com.artamonov.library.controllers;
 
+import com.artamonov.library.dto.BookDto;
 import com.artamonov.library.dto.PublishingHouseDto;
 import com.artamonov.library.services.PublishingHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class PublishingHouseController {
     @GetMapping("/{id}")
     public PublishingHouseDto getById(@PathVariable Long id) {
         return service.getById(id);
+    }
+
+    @GetMapping("/{id}/books")
+    public List<BookDto> getPublishingHouseBooks(@PathVariable Long id) {
+        return service.getBooksByPublishingHouse(id);
     }
 
     @PostMapping
