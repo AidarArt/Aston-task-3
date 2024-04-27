@@ -25,19 +25,26 @@ public class BookController {
         return service.getBooks();
     }
 
+    @GetMapping("/{id}")
+    public BookDto getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
     @PostMapping
     public void addBook(HttpServletResponse response, @RequestBody BookDto dto) throws IOException {
         service.addBook(dto);
         response.sendRedirect("/books");
     }
 
-    @PutMapping
-    public void updateBook(HttpServletResponse response) throws IOException {
+    @PatchMapping("/{id}")
+    public void updateBook(HttpServletResponse response, @PathVariable Long id, @RequestBody BookDto dto) throws IOException {
+        service.updateBook(id, dto);
         response.sendRedirect("/books");
     }
 
-    @DeleteMapping
-    public void deleteBook(HttpServletResponse response) throws IOException {
+    @DeleteMapping("/{id}")
+    public void deleteBook(HttpServletResponse response, @PathVariable Long id) throws IOException {
+        service.deleteBook(id);
         response.sendRedirect("/books");
     }
 }

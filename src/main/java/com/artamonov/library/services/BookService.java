@@ -1,18 +1,22 @@
 package com.artamonov.library.services;
 
 import com.artamonov.library.dto.BookDto;
+import com.artamonov.library.dto.PublishingHouseDto;
 import com.artamonov.library.dto.mappers.BookMapper;
+import com.artamonov.library.dto.mappers.PublishingHouseMapper;
 import com.artamonov.library.models.BookEntity;
+import com.artamonov.library.models.PublishingHouseEntity;
 import com.artamonov.library.repositories.BookRepository;
+import com.artamonov.library.repositories.PublishingHouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class BookService {
-
     private final BookRepository repository;
 
     @Autowired
@@ -24,13 +28,37 @@ public class BookService {
         List<BookEntity> entities = repository.findAll();
         List<BookDto> dtoList = new ArrayList<>();
         for (BookEntity entity : entities) {
-            dtoList.add(BookMapper.INSTANCE.sourceToDto(entity));
+            BookDto dto = BookMapper.INSTANCE.sourceToDto(entity);
+            dto.setPublishingHouse(entity.getPublishingHouse().getId());
+            dtoList.add(dto);
         }
         return dtoList;
     }
 
+    public BookDto getById(Long id) {
+        BookEntity entity = repository.findById(id).orElse(new BookEntity());
+        BookDto dto = BookMapper.INSTANCE.sourceToDto(entity);
+        dto.setPublishingHouse(entity.getPublishingHouse().getId());
+        return dto;
+    }
+
     public void addBook(BookDto dto) {
         BookEntity entity = BookMapper.INSTANCE.destinationToEntity(dto);
+        entity.setPublishingHouse(new PublishingHouseEntity());
+        entity.getPublishingHouse().setId(dto.getPublishingHouse());
         repository.save(entity);
+    }
+
+    public void updateBook(Long id, BookDto dto) {
+        BookEntity entity = repository.findById(id).orElse(new BookEntity());
+        entity.setName(dto.getName());
+        entity.setPublishingYear(dto.getPublishingYear());
+        entity.setPublishingHouse(new PublishingHouseEntity());
+        entity.getPublishingHouse().setId(dto.getPublishingHouse());
+        repository.save(entity);
+    }
+
+    public void deleteBook(Long id) {
+        repository.deleteById(id);
     }
 }

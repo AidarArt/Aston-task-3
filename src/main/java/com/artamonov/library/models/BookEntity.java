@@ -62,4 +62,12 @@ public class BookEntity {
     public void setEntity(PublishingHouseEntity publishingHouse) {
         this.publishingHouse = publishingHouse;
     }
+
+    public PublishingHouseEntity getPublishingHouse() {
+        return publishingHouse;
+    }
+
+    public void setPublishingHouse(PublishingHouseEntity publishingHouse) {
+        this.publishingHouse = publishingHouse;
+    }
 }
