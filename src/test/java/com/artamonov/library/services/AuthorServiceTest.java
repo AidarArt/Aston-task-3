@@ -1,6 +1,7 @@
 package com.artamonov.library.services;
 
 import com.artamonov.library.dto.AuthorDto;
+import com.artamonov.library.dto.mappers.AuthorMapper;
 import com.artamonov.library.models.AuthorEntity;
 import com.artamonov.library.repositories.AuthorRepository;
 import org.junit.jupiter.api.Assertions;
