@@ -1,5 +1,6 @@
 package com.artamonov.library.services;
 
+import com.artamonov.library.dto.BookDto;
 import com.artamonov.library.models.BookEntity;
 import com.artamonov.library.models.PublishingHouseEntity;
 import com.artamonov.library.repositories.BookRepository;
@@ -34,6 +35,18 @@ class BookServiceTest {
     void getById() {
         service.getById(1L);
         Mockito.verify(repository, Mockito.times(1)).findById(1L);
+    }
+
+    @Test
+    void updateBook() {
+        service.updateBook(1L, new BookDto());
+        Mockito.verify(repository, Mockito.times(1)).findById(1L);
+    }
+
+    @Test
+    void deleteBook() {
+        service.deleteBook(1L);
+        Mockito.verify(repository, Mockito.times(1)).deleteById(1L);
     }
 
 }

@@ -1,17 +1,13 @@
 package com.artamonov.library.services;
 
 import com.artamonov.library.dto.BookDto;
-import com.artamonov.library.dto.PublishingHouseDto;
 import com.artamonov.library.dto.mappers.BookMapper;
-import com.artamonov.library.dto.mappers.PublishingHouseMapper;
 import com.artamonov.library.models.BookEntity;
 import com.artamonov.library.models.PublishingHouseEntity;
 import com.artamonov.library.repositories.BookRepository;
-import com.artamonov.library.repositories.PublishingHouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 

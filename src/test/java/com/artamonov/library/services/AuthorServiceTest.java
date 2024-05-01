@@ -40,4 +40,18 @@ class AuthorServiceTest {
         authorService.getAuthorByFullName("name", "surname");
         Mockito.verify(repository, Mockito.times(1)).findAuthorEntityByNameAndSurname("name", "surname");
     }
+
+    @Test
+    void updateAuthor() {
+        AuthorDto dto = new AuthorDto();
+        authorService.updateAuthor(1L, dto);
+        Mockito.verify(repository, Mockito.times(1)).findById(1L);
+    }
+
+    @Test
+    void deleteAuthor() {
+        authorService.deleteAuthor(1L);
+        Mockito.verify(repository, Mockito.times(1)).deleteById(1L);
+    }
+
 }
