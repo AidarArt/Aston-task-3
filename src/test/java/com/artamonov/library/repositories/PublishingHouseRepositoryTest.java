@@ -2,7 +2,7 @@ package com.artamonov.library.repositories;
 
 import com.artamonov.library.config.DatabaseConfig;
 import com.artamonov.library.config.SpringConfig;
-import com.artamonov.library.models.AuthorEntity;
+import com.artamonov.library.models.PublishingHouseEntity;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,17 +14,13 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.util.List;
 
 @SpringJUnitConfig(classes = SpringConfig.class)
 @ContextConfiguration(classes = DatabaseConfig.class)
-@Testcontainers
-class AuthorRepositoryTest {
+class PublishingHouseRepositoryTest {
 
     @Autowired
-    private AuthorRepository repository;
+    private PublishingHouseRepository repository;
 
     @Container
     private static final PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15")
@@ -57,20 +53,15 @@ class AuthorRepositoryTest {
 
     @Test
     void findById() {
-        AuthorEntity entity = repository.findById(1L).orElse(new AuthorEntity());
-        Assertions.assertEquals("author1", entity.getName());
-        Assertions.assertEquals("author1", entity.getSurname());
+        PublishingHouseEntity entity = repository.findById(1L).orElse(new PublishingHouseEntity());
+        Assertions.assertEquals("ph1", entity.getName());
     }
 
     @Test
-    void addAuthor() {
-        AuthorEntity entity = new AuthorEntity();
-        entity.setName("test1");
-        entity.setSurname("test1");
+    void addPH() {
+        PublishingHouseEntity entity = new PublishingHouseEntity();
+        entity.setName("name");
         repository.save(entity);
-
-        AuthorEntity entity1 = repository.findById(4L).orElse(new AuthorEntity());
-        Assertions.assertEquals(entity1.getName(), entity.getName());
-        Assertions.assertEquals(4, repository.findAll().size());
+        Assertions.assertEquals(3, repository.findAll().size());
     }
 }
